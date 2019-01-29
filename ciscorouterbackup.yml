@@ -1,0 +1,23 @@
+---
+- hosts: ITS-NOC-TEST
+  gather_facts: true
+  connection: network_cli
+
+  vars:
+    ansible_connection: network_cli
+    ansible_network_os: ios
+
+  tasks:
+  - name: show run
+    ios_command:
+      commands:
+        - show run
+    register: config
+
+  - name: save output to /etc/ansible/backups
+    copy:
+      content: "{{ config.stdout[0]  }}"
+      dest: "/etc/ansible/playbooks/backup/show_run_{{ inventory_hostname }}{{ ansible_date_time.time }}.txt"
+
+
+
