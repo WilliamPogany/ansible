@@ -1,5 +1,5 @@
 ---
-- hosts: ITS-NOC-TEST
+- hosts:
   gather_facts: true
   connection: network_cli
 
@@ -18,6 +18,5 @@
     copy:
       content: "{{ config.stdout[0]  }}"
       dest: "/etc/ansible/playbooks/backup/show_run_{{ inventory_hostname }}{{ ansible_date_time.date }}{{ ansible_date_time.time }}.txt"
-
 
 
