@@ -1,0 +1,22 @@
+---
+- hosts: TEST
+  gather_facts: false
+  connection: ssh
+
+  vars:
+    ansible_connection: network_cli
+    ansible_network_os: ios
+    ansible_become: yes
+    ansible_become_method: enable
+    ansible_become_pass: <enable password>
+
+  tasks:
+  - name: Update Object Group
+    ios_config:
+      lines:
+        - host 47.44.125.34
+      parents: Object-group network VPN_PEERS
+  - name: Save Config
+    ios_config:
+      save_when: modified
+~

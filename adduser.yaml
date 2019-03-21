@@ -1,0 +1,24 @@
+---
+- hosts: TEST
+  gather_facts: false
+  connection: ssh
+
+  vars:
+    ansible_connection: network_cli
+    ansible_network_os: ios
+    ansible_become: yes
+    ansible_become_method: enable
+    ansible_become_pass: <enable password>
+
+  tasks:
+  - name: Update Object Group
+    ios_user:
+       name: ansible2
+       nopassword: no
+       privilege: 15
+       configured_password: <account password>
+  - name: save running to startup when modified
+    ios_config:
+      save_when: modified
+
+~
