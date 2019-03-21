@@ -14,7 +14,7 @@
   - name: Update Object Group
     ios_config:
       lines:
-        - host 47.44.125.34
+        - host <IP Address>
       parents: Object-group network VPN_PEERS
   - name: Save Config
     ios_config:
